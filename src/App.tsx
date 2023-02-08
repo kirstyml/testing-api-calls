@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { StarwarsPerson } from './starwars_person';
+import { Person } from './person';
 
 const App : React.FC = () => {
   const [person, setPerson] = useState<StarwarsPerson>();
@@ -18,7 +19,8 @@ const App : React.FC = () => {
 
   return (
     <div className="App">
-      {person && <p>{person.name}</p>}
+      <h1>Number 1 Star Wars Character:</h1>
+      {person && <Person person={person} />}
     </div>
   );
 }
