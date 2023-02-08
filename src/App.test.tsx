@@ -84,3 +84,25 @@ test('loads and displays first person', async () => {
   await waitFor(() => screen.findByText('Height:'));
   expect(screen.getByText('Luke Skywalker')).toBeInTheDocument();
 });
+
+test('handles 500 error', async () => {
+  server.use(
+    rest.get('https://swapi.dev/api/people', (req, res, ctx) => {
+      return res(ctx.status(500))
+    }),
+  )
+  render(<App />);
+  await waitFor(() => screen.findByText(/error/i));
+  expect(screen.getByText('error: Oops something went wrong.....')).toBeInTheDocument();
+});
+
+test('handles 418 error', async () => {
+  server.use(
+    rest.get('https://swapi.dev/api/people', (req, res, ctx) => {
+      return res(ctx.status(418))
+    }),
+  )
+  render(<App />);
+  await waitFor(() => screen.findByText(/error/i));
+  expect(screen.getByText(`error: 418 I'm a tea pot 🫖, silly`)).toBeInTheDocument();
+});
