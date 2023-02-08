@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The project was intended to learn more about unit testing components that use API calls. It is a simple app that calls the [Star Wars API](https://swapi.dev/) and tests the app using 
+jest, react-testing-library and msw.
+
 ## Available Scripts
 
 In the project directory, you can run:
